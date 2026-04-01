@@ -1,6 +1,6 @@
 import { MarketTime, Order } from "../src";
-import { getNewReservesDataForXAfterYTrade } from "../src/amm-math/get-new-reserves-for-x";
-import { getNewReservesDataForYAfterXTrade } from "../src/amm-math/get-new-reserves-for-y";
+import { getNewReservesDataAfterYTrade } from "../src/amm-math/get-new-reserves-after-x-trade";
+import { getNewReservesDataAfterXTrade } from "../src/amm-math/get-new-reserves-after-y-trade";
 import { getReservesFromPrice } from "../src/amm-math/get-reserves-from-price";
 
 const TWO_WEEKS = 1000 * 60 * 60 * 24 * 14
@@ -22,7 +22,7 @@ const yOrder: Order = {
     price: 0.5,
     marketTime
 }
-let afterTrade = getNewReservesDataForXAfterYTrade(yOrder)
+let afterTrade = getNewReservesDataAfterYTrade(yOrder)
 console.log({ afterTrade })
 
 const xOrder: Order = {
@@ -32,7 +32,7 @@ const xOrder: Order = {
     marketTime
 }
 
-afterTrade = getNewReservesDataForYAfterXTrade(xOrder)
+afterTrade = getNewReservesDataAfterXTrade(xOrder)
 console.log({ afterTrade })
 
 const xSellOrder = {
@@ -42,5 +42,5 @@ const xSellOrder = {
     marketTime
 }
 
-afterTrade = getNewReservesDataForYAfterXTrade(xSellOrder)
+afterTrade = getNewReservesDataAfterXTrade(xSellOrder)
 console.log({ afterTrade })

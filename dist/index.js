@@ -129,9 +129,9 @@ function getReservesFromPrice(price, marketTime) {
   return { x, y };
 }
 
-// src/amm-math/get-new-reserves-for-x.ts
+// src/amm-math/get-new-reserves-after-x-trade.ts
 var import_bisect = __toESM(require("bisect"));
-function getNewReservesDataForXAfterYTrade(order) {
+function getNewReservesDataAfterYTrade(order) {
   const { shares, isBuy, price, marketTime } = order;
   const { x: xReserve, y: yReserve } = getReservesFromPrice(price, marketTime);
   if (isBuy && shares >= yReserve) throw new Error("Insufficient Y Liquidity.");
@@ -168,9 +168,9 @@ function getNewReservesDataForXAfterYTrade(order) {
   return afterTrade;
 }
 
-// src/amm-math/get-new-reserves-for-y.ts
+// src/amm-math/get-new-reserves-after-y-trade.ts
 var import_bisect2 = __toESM(require("bisect"));
-function getNewReservesDataForYAfterXTrade(order) {
+function getNewReservesDataAfterXTrade(order) {
   const { shares, isBuy, price, marketTime } = order;
   const { x: xReserve, y: yReserve } = getReservesFromPrice(price, marketTime);
   if (isBuy && shares >= xReserve) throw new Error("Insufficient X Liquidity.");
@@ -210,8 +210,8 @@ function getNewReservesDataForYAfterXTrade(order) {
 // src/index.ts
 var pmAmm = {
   getEffectiveLiquidity,
-  getNewReservesDataForXAfterYTrade,
-  getNewReservesDataForYAfterXTrade,
+  getNewReservesDataAfterYTrade,
+  getNewReservesDataAfterXTrade,
   getPriceFromReseves,
   getReservesFromPrice
 };

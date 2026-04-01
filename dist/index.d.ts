@@ -24,9 +24,9 @@ type Order = {
     marketTime: MarketTime;
 };
 
-declare function getNewReservesDataForXAfterYTrade(order: Order): AfterTrade;
+declare function getNewReservesDataAfterYTrade(order: Order): AfterTrade;
 
-declare function getNewReservesDataForYAfterXTrade(order: Order): AfterTrade;
+declare function getNewReservesDataAfterXTrade(order: Order): AfterTrade;
 
 type Reserves = {
     x: number;
@@ -44,8 +44,8 @@ type Limits = {
 
 declare const pmAmm: {
     getEffectiveLiquidity: typeof getEffectiveLiquidity;
-    getNewReservesDataForXAfterYTrade: typeof getNewReservesDataForXAfterYTrade;
-    getNewReservesDataForYAfterXTrade: typeof getNewReservesDataForYAfterXTrade;
+    getNewReservesDataAfterYTrade: typeof getNewReservesDataAfterYTrade;
+    getNewReservesDataAfterXTrade: typeof getNewReservesDataAfterXTrade;
     getPriceFromReseves: typeof getPriceFromReseves;
     getReservesFromPrice: typeof getReservesFromPrice;
 };

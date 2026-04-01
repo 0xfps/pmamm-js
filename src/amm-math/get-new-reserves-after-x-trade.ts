@@ -2,33 +2,33 @@ import { AfterTrade } from "../types/after-trade"
 import { Order } from "../types/order"
 import { getNewPriceCostAverageCost } from "../utils/get-new-price-data"
 import { getEffectiveLiquidity } from "./get-effective-liquidity"
-import { getMinAndMaxYReservesForNewXReserve } from "./get-min-and-max-xy-reserves"
+import { getMinAndMaxXReservesForNewYReserve } from "./get-min-and-max-xy-reserves"
 import { getReservesFromPrice } from "./get-reserves-from-price"
 import { invariant } from "./invariant"
 import bisect from "bisect"
 
-export function getNewReservesDataForYAfterXTrade(order: Order): AfterTrade {
+export function getNewReservesDataAfterYTrade(order: Order): AfterTrade {
     const { shares, isBuy, price, marketTime } = order
     const { x: xReserve, y: yReserve } = getReservesFromPrice(price, marketTime)
 
-    if (isBuy && shares >= xReserve) throw new Error("Insufficient X Liquidity.")
+    if (isBuy && shares >= yReserve) throw new Error("Insufficient Y Liquidity.")
 
     const leff = getEffectiveLiquidity(marketTime)
-    const newXReserve = isBuy ? xReserve - shares : xReserve + shares
+    const newYReserve = isBuy ? yReserve - shares : yReserve + shares
 
-    function evaluateY(y: number) {
-        return invariant(newXReserve, y, leff) < 0
+    function evaluateX(x: number) {
+        return invariant(x, newYReserve, leff) < 0
     }
 
-    const currentYReserve = yReserve
-    const { min, max } = getMinAndMaxYReservesForNewXReserve(
-        currentYReserve,
-        newXReserve,
+    const currentXReserve = xReserve
+    const { min, max } = getMinAndMaxXReservesForNewYReserve(
+        currentXReserve,
+        newYReserve,
         marketTime
     )
-    const newYReserve = bisect(evaluateY, min, max)
+    const newXReserve = bisect(evaluateX, min, max)
 
-    if (!isBuy && newYReserve <= 0) throw new Error("Y Liquidity Depleted.")
+    if (!isBuy && newXReserve <= 0) throw new Error("X Liquidity Depleted.")
 
     const newReserves = { x: newXReserve, y: newYReserve }
     const { newPrice, cost, averageCost } = getNewPriceCostAverageCost(
