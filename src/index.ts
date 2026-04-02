@@ -8,6 +8,7 @@ import { Limits } from "./types/limits";
 import { MarketTime } from "./types/market-time";
 import { Order } from "./types/order";
 import { Reserves } from "./types/ reserves";
+import { LIQUIDITY_FACTOR, PRICE_DECIMALS, STARTING_PRICE, TIME_FACTOR } from "./constants";
 
 export {
     AfterTrade,
@@ -18,6 +19,10 @@ export {
 }
 
 const pmAmm = {
+    LIQUIDITY_FACTOR,
+    PRICE_DECIMALS,
+    STARTING_PRICE,
+    TIME_FACTOR,
     getEffectiveLiquidity,
     getNewReservesDataAfterYTrade,
     getNewReservesDataAfterXTrade,

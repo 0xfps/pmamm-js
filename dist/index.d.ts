@@ -43,6 +43,10 @@ type Limits = {
 };
 
 declare const pmAmm: {
+    LIQUIDITY_FACTOR: number;
+    PRICE_DECIMALS: number;
+    STARTING_PRICE: number;
+    TIME_FACTOR: number;
     getEffectiveLiquidity: typeof getEffectiveLiquidity;
     getNewReservesDataAfterYTrade: typeof getNewReservesDataAfterYTrade;
     getNewReservesDataAfterXTrade: typeof getNewReservesDataAfterXTrade;

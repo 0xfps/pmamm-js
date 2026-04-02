@@ -1,6 +1,8 @@
 // src/constants.ts
+var STARTING_PRICE = 0.5;
 var PRICE_DECIMALS = 6;
 var LIQUIDITY_FACTOR = 100;
+var TIME_FACTOR = 1e3;
 
 // src/amm-math/get-effective-liquidity.ts
 function getEffectiveLiquidity({ currentTime, endTime }) {
@@ -173,6 +175,10 @@ function getNewReservesDataAfterXTrade(order) {
 
 // src/index.ts
 var pmAmm = {
+  LIQUIDITY_FACTOR,
+  PRICE_DECIMALS,
+  STARTING_PRICE,
+  TIME_FACTOR,
   getEffectiveLiquidity,
   getNewReservesDataAfterYTrade,
   getNewReservesDataAfterXTrade,
