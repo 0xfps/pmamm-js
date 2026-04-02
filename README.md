@@ -1,5 +1,5 @@
 # PM-AMM (Prediction Market Automated Market Maker)
-#### `pmamm.js`
+#### `pmamm-js`
 
 This package provides a practical implementation of the prediction market automated market maker introduced by Paradigm, commonly referred to as the [pm-AMM](https://www.paradigm.xyz/2024/11/pm-amm). The pm-AMM is designed specifically for outcome tokens; assets that resolve to fixed payoffs (e.g., $1 or $0), and is derived from a probabilistic model known as Gaussian Score Dynamics. Unlike traditional AMMs such as constant product or LMSR, this design enforces a uniform loss-vs-rebalancing (LVR) profile, meaning liquidity providers incur losses at a rate proportional to pool value regardless of price, while concentrating liquidity around the most informative probability region (near 50%).
 
@@ -107,3 +107,7 @@ function invariant(x: number, y: number, Leff: number): number
 ```
 
 Given a particular number of `X` and `Y` shares and an effective liquidity, `Leff`, this function should return `0` or a number infinitesimally close to `0`. This validates that the `X` and `Y` share amounts are valid reserves for the PM-AMM. It's the `XY = K` of PM-AMMs.
+
+## Acknowledgements
+- [pm-AMM: A Uniform AMM for Prediction Markets](https://www.paradigm.xyz/2024/11/pm-amm) by [Paradigm](https://www.paradigm.xyz/).
+- [pm-amm-simulator](https://github.com/iagodemacedo/pm-amm-simulator) by [iagodemacedo](https://github.com/iagodemacedo).
