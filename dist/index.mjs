@@ -6,7 +6,7 @@ var TIME_FACTOR = 1e3;
 
 // src/amm-math/get-effective-liquidity.ts
 function getEffectiveLiquidity({ currentTime, endTime }) {
-  return LIQUIDITY_FACTOR * Math.sqrt(endTime - currentTime);
+  return LIQUIDITY_FACTOR * parseInt(Math.sqrt(endTime - currentTime).toString().split(".")[0]);
 }
 
 // src/amm-math/gaussian.ts
