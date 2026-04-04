@@ -1,7 +1,7 @@
 // src/constants.ts
 var STARTING_PRICE = 0.5;
-var PRICE_DECIMALS = 6;
-var LIQUIDITY_FACTOR = 100;
+var PRICE_DECIMALS = 18;
+var LIQUIDITY_FACTOR = 1e4;
 var TIME_FACTOR = 1e3;
 
 // src/amm-math/get-effective-liquidity.ts
@@ -98,7 +98,7 @@ function getReservesFromPrice(price, marketTime) {
   return { x, y };
 }
 
-// src/amm-math/get-new-reserves-after-x-trade.ts
+// src/amm-math/get-new-reserves-after-y-trade.ts
 import bisect from "bisect";
 function getNewReservesDataAfterYTrade(order) {
   const { shares, isBuy, price, marketTime } = order;
@@ -137,7 +137,7 @@ function getNewReservesDataAfterYTrade(order) {
   return afterTrade;
 }
 
-// src/amm-math/get-new-reserves-after-y-trade.ts
+// src/amm-math/get-new-reserves-after-x-trade.ts
 import bisect2 from "bisect";
 function getNewReservesDataAfterXTrade(order) {
   const { shares, isBuy, price, marketTime } = order;

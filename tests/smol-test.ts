@@ -1,6 +1,6 @@
 import { MarketTime, Order } from "../src";
-import { getNewReservesDataAfterYTrade } from "../src/amm-math/get-new-reserves-after-x-trade";
-import { getNewReservesDataAfterXTrade } from "../src/amm-math/get-new-reserves-after-y-trade";
+import { getNewReservesDataAfterYTrade } from "../src/amm-math/get-new-reserves-after-y-trade";
+import { getNewReservesDataAfterXTrade } from "../src/amm-math/get-new-reserves-after-x-trade";
 import { getReservesFromPrice } from "../src/amm-math/get-reserves-from-price";
 
 const TWO_WEEKS = 1000 * 60 * 60 * 24 * 14

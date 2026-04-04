@@ -3,12 +3,12 @@ export const STARTING_PRICE = 0.5
 // This, while not needed for this package, because JS operates
 // with floating point numbers, is needed to establish the point
 // of the current price of either sides of the market as having
-// 6 decimals on the contract interface.
-export const PRICE_DECIMALS = 6
+// 18 decimals on the contract interface.
+export const PRICE_DECIMALS = 18
 // This is tentative, anyone can use any liquidity factor. This,
 // just like `PRICE_DECIMALS` establish the fact that we're using
-// a 100 point liquidity factor on the contract interface.
-export const LIQUIDITY_FACTOR = 100
+// a 10000 point liquidity factor on the contract interface.
+export const LIQUIDITY_FACTOR = 10000
 // JS deals with time in milliseconds, when recreating with Solidity,
 // multiply LF with 1,000 too even though time will not need milliseconds.
 // Concurrency.

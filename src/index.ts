@@ -1,6 +1,6 @@
 import { getEffectiveLiquidity } from "./amm-math/get-effective-liquidity";
-import { getNewReservesDataAfterYTrade } from "./amm-math/get-new-reserves-after-x-trade";
-import { getNewReservesDataAfterXTrade } from "./amm-math/get-new-reserves-after-y-trade";
+import { getNewReservesDataAfterYTrade } from "./amm-math/get-new-reserves-after-y-trade";
+import { getNewReservesDataAfterXTrade } from "./amm-math/get-new-reserves-after-x-trade";
 import { getPriceFromReseves } from "./amm-math/get-price-from-reserves";
 import { getReservesFromPrice } from "./amm-math/get-reserves-from-price";
 import { AfterTrade } from "./types/after-trade";
