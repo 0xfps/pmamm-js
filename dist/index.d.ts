@@ -42,11 +42,18 @@ type Limits = {
     max: number;
 };
 
+declare function Phi(x: number): number;
+declare function phi(x: number): number;
+declare function Phi_inverse(x: number): number;
+
 declare const pmAmm: {
     LIQUIDITY_FACTOR: number;
     PRICE_DECIMALS: number;
     STARTING_PRICE: number;
     TIME_FACTOR: number;
+    phi: typeof phi;
+    Phi: typeof Phi;
+    Phi_inverse: typeof Phi_inverse;
     getEffectiveLiquidity: typeof getEffectiveLiquidity;
     getNewReservesDataAfterYTrade: typeof getNewReservesDataAfterYTrade;
     getNewReservesDataAfterXTrade: typeof getNewReservesDataAfterXTrade;

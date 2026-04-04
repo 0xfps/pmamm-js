@@ -9,6 +9,7 @@ import { MarketTime } from "./types/market-time";
 import { Order } from "./types/order";
 import { Reserves } from "./types/ reserves";
 import { LIQUIDITY_FACTOR, PRICE_DECIMALS, STARTING_PRICE, TIME_FACTOR } from "./constants";
+import { Phi, phi, Phi_inverse } from "./amm-math/gaussian";
 
 export {
     AfterTrade,
@@ -23,6 +24,9 @@ const pmAmm = {
     PRICE_DECIMALS,
     STARTING_PRICE,
     TIME_FACTOR,
+    phi,
+    Phi,
+    Phi_inverse,
     getEffectiveLiquidity,
     getNewReservesDataAfterYTrade,
     getNewReservesDataAfterXTrade,
