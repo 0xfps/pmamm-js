@@ -1,6 +1,6 @@
 import gaussian from "gaussian"
 
-const distribution = gaussian(0, 1)
+export const distribution = gaussian(0, 1)
 
 // CDF, Cumulative Distribution Function.
 export function Phi(x: number): number {

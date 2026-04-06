@@ -1,6 +1,6 @@
 {
   "name": "@0xfps/pmamm-js",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A TypeScript implementation of the core functionalities of the PM-AMM Model by Paradigm @ https://www.paradigm.xyz/2024/11/pm-amm.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -9,8 +9,9 @@
     "dist"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf dist && tsup"
+    "test": "jest",
+    "build": "jest && rm -rf dist && tsup",
+    "publish": "npm publish --access=public"
   },
   "repository": {
     "type": "git",
@@ -33,11 +34,13 @@
   "homepage": "https://github.com/0xfps/pmamm-js#readme",
   "dependencies": {
     "@types/gaussian": "^1.2.2",
-    "bisect": "^1.0.0",
     "gaussian": "^1.3.0",
     "tsup": "^8.5.1"
   },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "jest": "^30.3.0",
+    "ts-jest": "^29.4.9",
     "typescript": "^6.0.2"
   }
 }
