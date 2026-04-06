@@ -48,6 +48,21 @@ function getWholeNumberFromDecimal(decimal) {
   return parseInt(decimal.toString().split(".")[0]);
 }
 
+// src/utils/bisect.ts
+function bisect(func, low, high, tol) {
+  tol = tol || 1e-8;
+  while (high - low > tol) {
+    var avg = (high + low) / 2;
+    if (avg == high || avg == low) return avg;
+    if (func(avg)) {
+      high = avg;
+    } else {
+      low = avg;
+    }
+  }
+  return low;
+}
+
 // src/amm-math/gaussian.ts
 var import_gaussian = __toESM(require("gaussian"));
 var distribution = (0, import_gaussian.default)(0, 1);
@@ -135,10 +150,10 @@ function getReservesFromPrice(price, marketTime) {
 }
 
 // src/amm-math/get-new-reserves-after-y-trade.ts
-var import_bisect = __toESM(require("bisect"));
 function getNewReservesDataAfterYTrade(order) {
   const { shares, isBuy, price, marketTime } = order;
   const { x: xReserve, y: yReserve } = getReservesFromPrice(price, marketTime);
+  if (shares <= 0) throw new Error("Can't buy 0.");
   if (isBuy && shares >= yReserve) throw new Error("Insufficient Y Liquidity.");
   const leff = getEffectiveLiquidity(marketTime);
   const newYReserve = isBuy ? yReserve - shares : yReserve + shares;
@@ -151,7 +166,7 @@ function getNewReservesDataAfterYTrade(order) {
     newYReserve,
     marketTime
   );
-  const newXReserve = (0, import_bisect.default)(evaluateX, min, max);
+  const newXReserve = bisect(evaluateX, min, max);
   if (!isBuy && newXReserve <= 0) throw new Error("X Liquidity Depleted.");
   const newReserves = { x: newXReserve, y: newYReserve };
   const { newPrice, cost, averageCost } = getNewPriceCostAverageCost(
@@ -174,10 +189,10 @@ function getNewReservesDataAfterYTrade(order) {
 }
 
 // src/amm-math/get-new-reserves-after-x-trade.ts
-var import_bisect2 = __toESM(require("bisect"));
 function getNewReservesDataAfterXTrade(order) {
   const { shares, isBuy, price, marketTime } = order;
   const { x: xReserve, y: yReserve } = getReservesFromPrice(price, marketTime);
+  if (shares <= 0) throw new Error("Can't buy 0.");
   if (isBuy && shares >= xReserve) throw new Error("Insufficient X Liquidity.");
   const leff = getEffectiveLiquidity(marketTime);
   const newXReserve = isBuy ? xReserve - shares : xReserve + shares;
@@ -190,7 +205,7 @@ function getNewReservesDataAfterXTrade(order) {
     newXReserve,
     marketTime
   );
-  const newYReserve = (0, import_bisect2.default)(evaluateY, min, max);
+  const newYReserve = bisect(evaluateY, min, max);
   if (!isBuy && newYReserve <= 0) throw new Error("Y Liquidity Depleted.");
   const newReserves = { x: newXReserve, y: newYReserve };
   const { newPrice, cost, averageCost } = getNewPriceCostAverageCost(

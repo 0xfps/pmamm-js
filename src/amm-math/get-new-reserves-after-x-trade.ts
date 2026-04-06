@@ -1,16 +1,17 @@
 import { AfterTrade } from "../types/after-trade"
 import { Order } from "../types/order"
+import { bisect } from "../utils/bisect"
 import { getNewPriceCostAverageCost } from "../utils/get-new-price-data"
 import { getEffectiveLiquidity } from "./get-effective-liquidity"
 import { getMinAndMaxYReservesForNewXReserve } from "./get-min-and-max-xy-reserves"
 import { getReservesFromPrice } from "./get-reserves-from-price"
 import { invariant } from "./invariant"
-import bisect from "bisect"
 
 export function getNewReservesDataAfterXTrade(order: Order): AfterTrade {
     const { shares, isBuy, price, marketTime } = order
     const { x: xReserve, y: yReserve } = getReservesFromPrice(price, marketTime)
 
+    if (shares <= 0) throw new Error("Can't buy 0.")
     if (isBuy && shares >= xReserve) throw new Error("Insufficient X Liquidity.")
 
     const leff = getEffectiveLiquidity(marketTime)
