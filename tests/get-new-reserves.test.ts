@@ -72,6 +72,20 @@ describe("Get new reserves after trade.", function () {
         expect(afterTrade.newPrice).toBeLessThan(afterTrade.oldPrice)
     })
 
+    it("Should throw after trade of X sale liquidates Y reserves.", function () {
+        let xOrder: Order = {
+            shares: 5_000_000_000,
+            // Insanely large number to deplete Y liquidity.
+            // Jokes aside, 2B didn't liquidate Y 💀.
+            isBuy: false,
+            price: initialPrice,
+            marketTime: time
+        }
+
+        order = xOrder
+        expect(() => getNewReservesDataAfterXTrade(order)).toThrow("Y Liquidity Depleted.")
+    })
+
     // Y.
     it("Should throw error of insufficient liquidity for excess Y purchase.", function () {
         let yOrder: Order = {
@@ -128,4 +142,6 @@ describe("Get new reserves after trade.", function () {
         expect(afterTrade.newYReserve).toBeGreaterThan(initialYReserve)
         expect(afterTrade.newPrice).toBeGreaterThan(afterTrade.oldPrice)
     })
+
+    // Note: X liquidity cannot be depleted.
 })
