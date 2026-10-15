@@ -28,7 +28,7 @@ export function getMinAndMaxYReservesForNewXReserve(
     const leff = getEffectiveLiquidity(marketTime)
 
     // Finding the upper limits.
-    // We keep adding 10,000 until the invariant
+    // We keep adding 5,000 until the invariant
     // results in below 0.
     while (!maxYEvaluation) {
         maxYEvaluation = invariant(newXReserve, currentYReserve, leff) < 0
@@ -38,7 +38,7 @@ export function getMinAndMaxYReservesForNewXReserve(
     maxYReserve = currentYReserve
 
     // Finding the lower limits.
-    // We keep adding 10,000 until the invariant
+    // We keep removing 5,000 until the invariant
     // results in above 0.
     while (!minYEvaluation) {
         currentYReserve -= margin
@@ -61,7 +61,7 @@ export function getMinAndMaxXReservesForNewYReserve(
     const leff = getEffectiveLiquidity(marketTime)
 
     // Finding the upper limits.
-    // We keep adding 10,000 until the invariant
+    // We keep adding 5,000 until the invariant
     // results in below 0.
     while (!maxXEvaluation) {
         maxXEvaluation = invariant(currentXReserve, newYReserve, leff) < 0
@@ -71,7 +71,7 @@ export function getMinAndMaxXReservesForNewYReserve(
     maxXReserve = currentXReserve
 
     // Finding the lower limits.
-    // We keep adding 10,000 until the invariant
+    // We keep removing 5,000 until the invariant
     // results in above 0.
     while (!minXEvaluation) {
         currentXReserve -= margin
