@@ -41,7 +41,7 @@ function Phi_inverse(x) {
 }
 
 // src/amm-math/get-price-from-reserves.ts
-function getPriceFromReseves({ x, y }, marketTime) {
+function getPriceFromReserves({ x, y }, marketTime) {
   const effectiveL = getEffectiveLiquidity(marketTime);
   const z = (y - x) / effectiveL;
   const price = Phi(z);
@@ -50,7 +50,7 @@ function getPriceFromReseves({ x, y }, marketTime) {
 
 // src/utils/get-new-price-data.ts
 function getNewPriceCostAverageCost(newReserves, marketTime, oldPrice, shares) {
-  const newPrice = getPriceFromReseves(newReserves, marketTime);
+  const newPrice = getPriceFromReserves(newReserves, marketTime);
   const cost = parseFloat(((oldPrice + newPrice) / 2 * shares).toFixed(PRICE_DECIMALS));
   const averageCost = parseFloat((cost / shares).toFixed(PRICE_DECIMALS));
   const afterTrade = {
@@ -203,7 +203,7 @@ var pmAmm = {
   getEffectiveLiquidity,
   getNewReservesDataAfterYTrade,
   getNewReservesDataAfterXTrade,
-  getPriceFromReseves,
+  getPriceFromReserves,
   getReservesFromPrice
 };
 var index_default = pmAmm;

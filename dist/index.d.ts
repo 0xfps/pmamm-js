@@ -33,7 +33,7 @@ type Reserves = {
     y: number;
 };
 
-declare function getPriceFromReseves({ x, y }: Reserves, marketTime: MarketTime): number;
+declare function getPriceFromReserves({ x, y }: Reserves, marketTime: MarketTime): number;
 
 declare function getReservesFromPrice(price: number, marketTime: MarketTime): Reserves;
 
@@ -57,7 +57,7 @@ declare const pmAmm: {
     getEffectiveLiquidity: typeof getEffectiveLiquidity;
     getNewReservesDataAfterYTrade: typeof getNewReservesDataAfterYTrade;
     getNewReservesDataAfterXTrade: typeof getNewReservesDataAfterXTrade;
-    getPriceFromReseves: typeof getPriceFromReseves;
+    getPriceFromReserves: typeof getPriceFromReserves;
     getReservesFromPrice: typeof getReservesFromPrice;
 };
 

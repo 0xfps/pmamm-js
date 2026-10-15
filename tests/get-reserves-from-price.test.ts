@@ -1,7 +1,7 @@
 import { describe, it, expect } from "@jest/globals"
 import { getReservesFromPrice } from "../src/amm-math/get-reserves-from-price"
 import { marketTime, randomInRange } from "./test-constants"
-import { getPriceFromReseves } from "../src/amm-math/get-price-from-reserves"
+import { getPriceFromReserves } from "../src/amm-math/get-price-from-reserves"
 
 // Prices are checked to precision 2 because they're accurate
 // to the .7000000000000001'th decimal place
@@ -16,7 +16,7 @@ describe("Get Reserves From Price Test", function () {
 
         expect(initialXReserve).toBeLessThanOrEqual(initialYReserve)
         expect(
-            parseFloat(getPriceFromReseves(reserves, marketTime).toPrecision(2))
+            parseFloat(getPriceFromReserves(reserves, marketTime).toPrecision(2))
         ).toBe(initialPrice)
     })
 
@@ -27,7 +27,7 @@ describe("Get Reserves From Price Test", function () {
         expect(initialXReserve).toBeLessThan(x)
         expect(initialYReserve).toBeGreaterThan(y)
         expect(
-            parseFloat(getPriceFromReseves({ x, y }, marketTime).toPrecision(2))
+            parseFloat(getPriceFromReserves({ x, y }, marketTime).toPrecision(2))
         ).toBe(initialPrice)
 
         initialPrice = randomInRange(0.51, 0.99)
@@ -36,7 +36,7 @@ describe("Get Reserves From Price Test", function () {
         expect(initialXReserve).toBeGreaterThan(newReserves.x)
         expect(initialYReserve).toBeLessThan(newReserves.y)
         expect(
-            parseFloat(getPriceFromReseves(newReserves, marketTime).toPrecision(2))
+            parseFloat(getPriceFromReserves(newReserves, marketTime).toPrecision(2))
         ).toBe(initialPrice)
     })
 })

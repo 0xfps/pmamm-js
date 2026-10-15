@@ -1,4 +1,4 @@
-import { getPriceFromReseves } from "../amm-math/get-price-from-reserves";
+import { getPriceFromReserves } from "../amm-math/get-price-from-reserves";
 import { PRICE_DECIMALS } from "../constants";
 import { Reserves } from "../types/ reserves";
 import { AfterTrade } from "../types/after-trade";
@@ -10,7 +10,7 @@ export function getNewPriceCostAverageCost(
     oldPrice: number,
     shares: number
 ): Omit<AfterTrade, "oldXReserve" | "oldYReserve" | "oldPrice" | "newXReserve" | "newYReserve"> {
-    const newPrice = getPriceFromReseves(newReserves, marketTime)
+    const newPrice = getPriceFromReserves(newReserves, marketTime)
     const cost = parseFloat((((oldPrice + newPrice) / 2) * shares).toFixed(PRICE_DECIMALS))
     const averageCost = parseFloat((cost / shares).toFixed(PRICE_DECIMALS))
 
