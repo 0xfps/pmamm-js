@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "build": "jest && rm -rf dist && tsup",
+    "build": "jest && rm -rf dist && tsup"
   },
   "repository": {
     "type": "git",
